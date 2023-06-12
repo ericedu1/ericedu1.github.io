@@ -45,7 +45,9 @@ Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 #### 1. 업데이트 내용
 
 - 헤더태그를 이용해서 블로그 index.html을 조금은 꾸밈, 차라리 마크다운으로 이쁘게 쓰는게 나을듯
-- 추가 페이지로 Quantum Fourier transformation을 추가했음, Obsidian Enhancing Export를 사용했는데 디자인이 상당히 마음에 든다😃
+- 추가 페이지로 Quantum Fourier transformation을 추가했음, Obsidian Enhancing Export(이하 Obsi EE)를 사용했는데 디자인이 상당히 마음에 든다😃
+- Obsi EE를 이용해서 LearnGitHub도 수정.
+- 각 페이지 아래에 to main page anker 추가
 
 #### 2. 추가 수정해야할 점
 
