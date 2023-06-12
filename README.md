@@ -1,9 +1,9 @@
 # ericedu1.github.io
 
-Solo project of ericedu (Yu-seong Jeon)
+Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 
 ## Goals ⚽︎
----
+
 ### 1. 기획 목적
 
 #### 1.1 기록 📚
@@ -30,7 +30,7 @@ Solo project of ericedu (Yu-seong Jeon)
    우선 230612 기준 HTML, CSS, JavaScript를 공부해본적은 있지만, 약 3년전에 살짝 책만 봤던 수준이라 좋은 디자인 수준을 갖추지는 못할 것이다. 하지만 차근차근 공부해, 언젠가 Tistory 의 템플릿과 비슷한 수준의 디자인을 만들어 내고 싶다.
 
 ## Update
----
+
 ### 1. Update 230607
 
 23년 6월 7일 업데이트 내용 정리이다.
