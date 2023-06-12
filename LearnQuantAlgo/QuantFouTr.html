@@ -301,6 +301,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
 <header id="title-block-header">
 <h1 class="title">The quantum Fourier tranform</h1>
 </header>
+<p>생성일: 2023년 6월 12일 오후 7:15</p>
 <h2 id="quantum-fourier-transform의-도입">1. Quantum Fourier transform의
 도입</h2>
 <hr />
@@ -317,13 +318,13 @@ Fourier Transform</h3>
 <p>for vector in complex space, <span class="math inline">\(\vec x
 \rightarrow \vec y\)</span> transform is defined as,</p>
 <p><span class="math display">\[
-y_k\equiv\frac 1 {\sqrt N}\sum_{j=0}^{N-1}x_je^{2\pi ijk/N}\tag{5.1}
+y_k\equiv\frac 1 {\sqrt N}\sum_{j=0}^{N-1}x_je^{2\pi ijk/N}\tag{1}
 \]</span></p>
 <p>두 개의 N dimension 벡터에 대해, 우리는 각 인덱스에 대해 위와 같은
 Fourier transform 정의를 할 수 있다. 이는 밑과 같은 행렬 표현식으로 다시
 전환할 수 있다.</p>
 <p><span class="math display">\[
-Q_{k,j}=\frac 1 {\sqrt{N}}[(e^{\frac{2\pi i}{N}})^{k}]^j\tag{5.2}
+Q_{k,j}=\frac 1 {\sqrt{N}}[(e^{\frac{2\pi i}{N}})^{k}]^j\tag{2}
 \]</span></p>
 <p>이때, 우리는 <span class="math inline">\(\vec y=\hat Q \vec
 x\)</span>와 같은 변환을 생각할 수 있고, 이에 대한 직관적인 이해로
@@ -338,19 +339,19 @@ Matrix 성분 만큼에 해당하며, <span class="math inline">\(\frac N
 Fourier Transform</h3>
 <p>for vector’s basis state set of some operator’s in Hilbert space,</p>
 <p><span class="math display">\[
-\ket j=Q\ket k=\sum^{N-1}_{j=0}Q_{jk}\ket k\tag{5.3}
+\ket j=Q\ket k=\sum^{N-1}_{j=0}Q_{jk}\ket k\tag{3}
 \]</span></p>
 <p>so, for arbitrary state <span class="math inline">\(\ket
 x=\sum_jx_j\ket j\)</span>,</p>
 <p><span class="math display">\[
-\ket x\rightarrow\sum^{N-1}_{j=0}y_j\ket j\tag{5.4}
+\ket x\rightarrow\sum^{N-1}_{j=0}y_j\ket j\tag{4}
 \]</span></p>
 <p>이때 우리의 <span class="math inline">\(x_k, y_j\)</span>는 5.1의
 이산 푸리에 변환을 따른다. 우리는 qubit의 computational basis, <span class="math inline">\(\{0,1\}^n\)</span>의 원소들에 대해서 계산하므로,
 우리의 basis의 수, <span class="math inline">\(N=2^n\)</span>이 되어,
 Fourier 변환의 Matrix element는 다음과 같이 작성 될 수 있다.</p>
 <p><span class="math display">\[
-Q_{kj}=\frac 1 {2^{n/2}}[(e^{\frac{2\pi i}{2^n}})^k]^j\tag{5.5}
+Q_{kj}=\frac 1 {2^{n/2}}[(e^{\frac{2\pi i}{2^n}})^k]^j\tag{5}
 \]</span></p>
 <h2 id="binary-number-representation">2. Binary Number
 representation</h2>
@@ -365,31 +366,36 @@ Mapping</h3>
 <span class="math inline">\(j\in\{0,1\}^n\)</span> 에 대해 우리는 아래의
 정의와 같이 10진수로의 mapping을 할 수 있다.</p>
 <p><span class="math display">\[
-j=j_12^{n-1}+j_22^{n-2}+\cdots + j_n2^0\tag{5.6}
+j=j_12^{n-1}+j_22^{n-2}+\cdots + j_n2^0\tag{6}
 \]</span></p>
 <p>이때, binary fraction은 다음과 같이 정의 될 수 있다.</p>
 <p><span class="math display">\[
-0.j_lj_{l+1}\cdots j_m=j_l/2+j_{l+1}/2^2+\cdots j_m/2^{m-l+1}\tag{5.7}
+0.j_lj_{l+1}\cdots j_m=j_l/2+j_{l+1}/2^2+\cdots j_m/2^{m-l+1}\tag{7}
 \]</span></p>
 <p>이 정의가 우리가 실제 사용하는 10진 소수와 10진수의 관계에 부합하는지
 확인하자. 10진수에서,</p>
 <p><span class="math display">\[
-0.a_la_{l-1}\cdots a_m\times
-10^n\\=a_l10^{n-1}+a_{l-1}10^{n-2}+\cdots+a_{l-n+1}10^0+a_{l-n+2}10^{-1}+\cdots
-a_m10^{m-l+1-n}\\\tag{5.8}
+\begin{align*}&amp;0.a_la_{l-1}\cdots a_m\times 10^n\\
+&amp;=a_l10^{n-1}+a_{l-1}10^{n-2}+\cdots+a_{l-n+1}10^0+a_{l-n+2}10^{-1}+\cdots
+a_m10^{m-l+1-n}\tag{8}
+\end{align*}
 \]</span></p>
 <p>위와 같은 관계를 확인했었다. 이를 2진수, 2진 소수 사이에서 확인해
 보면,</p>
 <p><span class="math display">\[
-0.j_lj_{l-1}\cdots j_m\times
-2^n\\=j_l2^{n-1}+j_{l-1}2^{n-2}+\cdots+j_{l-n+1}2^0+j_{l-n+2}2^{-1}+\cdots
-j_m2^{m-l+1-n}\\\tag{5.9}
+\begin{align*}
+&amp;0.j_lj_{l-1}\cdots j_m\times 2^n\\
+&amp;=j_l2^{n-1}+j_{l-1}2^{n-2}+\cdots+j_{l-n+1}2^0+j_{l-n+2}2^{-1}+\cdots
+j_m2^{m-l+1-n}\tag{9}
+\end{align*}
 \]</span></p>
 <p>따라서 우리는 <span class="math inline">\(j=j_12^{n-1}+j_22^{n-2}+\cdots + j_n2^0\)</span>에
 대해</p>
 <p><span class="math display">\[
-j2^{-l}=j_12^{n-l-1}+j_22^{n-l-2}+\cdots + j_n2^{-l}\\\;\\=j_1j_2\cdots
-j_{n-l}.j_{n-l+1}\cdots j_{n(2)}\\\tag{5.10}
+\begin{align*}
+j2^{-l}&amp;=j_12^{n-l-1}+j_22^{n-l-2}+\cdots + j_n2^{-l}\\
+&amp;=j_1j_2\cdots j_{n-l}.j_{n-l+1}\cdots j_{n(2)}\tag{10}
+\end{align*}
 \]</span></p>
 <p>라는 수식을 얻을 수 있다. 이 수식을 이용해 QFT에 대한 circuit을
 구성할 수 있다.</p>
@@ -397,7 +403,7 @@ j_{n-l}.j_{n-l+1}\cdots j_{n(2)}\\\tag{5.10}
 <hr />
 <p>우리의 QFT는 다음 표현식을 따른다.</p>
 <p><span class="math display">\[
-\ket{j}=\frac 1{\sqrt N}\sum_ke^{2\pi ijk/N}\ket k\tag{5.11}
+\ket{j}=\frac 1{\sqrt N}\sum_ke^{2\pi ijk/N}\ket k\tag{11}
 \]</span></p>
 <p>우리는 이에 대한 2진 표현식을 활용해 다음과 같이 표현식을 바꿀 수
 있다.</p>
@@ -411,30 +417,30 @@ ij/2^m}\ket 1)\\&amp;=\frac 1{2^{n/2}}(\ket 0+e^{2\pi ij2^{-1}}\ket
 1)(\ket 0+e^{2\pi ij2^{-2}}\ket 1)\cdots(\ket 0+e^{2\pi ij2^{-n}}\ket
 1)\\&amp;=\frac 1 {2^{n/2}}(\ket 0+e^{2\pi i0.j_n}\ket 1)(\ket 0+e^{2\pi
 i0.j_{n-1}j_{n}}\ket 1)\cdots(\ket 0+e^{2\pi i0.j_1\cdots
-j_{n-1}j_{n}}\ket 1)\tag{5.12}\end{align}
+j_{n-1}j_{n}}\ket 1)\tag{12}\end{align}
 \]</span></p>
 <p>k번째 qubit, <span class="math inline">\(\ket {j_k}\)</span>에 대해
 우리는 <span class="math inline">\(\ket0+e^{2\pi i0.j_{n-k+1}\cdots
 j_n}\ket 1\)</span>state를 만들어야 하는 것을 알 수 있는데, 과정은
 다음과 같다. 우선 Z-axis에 대한 회전 operator를 하나 정의한다.</p>
 <p><span class="math display">\[
-R_k=R_z(\frac{2\pi}{2^k})\tag{5.13}
+R_k=R_z(\frac{2\pi}{2^k})\tag{13}
 \]</span></p>
 <p>그리고 <span class="math inline">\(\ket {j_k}\)</span>에 hadamard
 gate를 가하면 state가 다음과 같이 변함을 볼 수 있다.</p>
 <p><span class="math display">\[
-\hat H\ket{j_k}=\ket0+e^{2\pi i 0.j_k}\ket1
+\hat H\ket{j_k}=\ket0+e^{2\pi i 0.j_k}\ket1\tag{14}
 \]</span></p>
 <p>다음으로, 만약 우리가 controlled-<span class="math inline">\(R_k\)</span>를 target qubit이 <span class="math inline">\(\ket {j_k}\)</span>, controll qubit이 <span class="math inline">\(\ket {j_{k+1}}\)</span>이 되게 걸면 다음과 같이
 변함을 알 수 있다.</p>
 <p><span class="math display">\[
-\hat{CR_2}\hat H\ket{j_k}=\ket0+e^{2\pi i0.j_kj_{k+1}}\ket1
+\hat{CR_2}\hat H\ket{j_k}=\ket0+e^{2\pi i0.j_kj_{k+1}}\ket1\tag{15}
 \]</span></p>
 <p>따라서 우리가 이후에 controlled-<span class="math inline">\(R_k\)</span>을 지속적으로 <span class="math inline">\(k=n\)</span> 까지 가하면 다음과 같은 state를 만들
 수 있음을 알 수 있다.</p>
 <p><span class="math display">\[
 \hat {CR_{n-k+1}}\cdots\hat {CR_{2}}\hat H\ket{j_k}=\ket0+e^{2\pi
-i0.j_k\cdots j_n}\ket1
+i0.j_k\cdots j_n}\ket1\tag{16}
 \]</span></p>
 <p>이러한 operation을 모든 qubit에 대해서 해주면 지금까지의 circuit은
 다음과 같다.</p>
@@ -448,7 +454,7 @@ i0.j_k\cdots j_n}\ket1
 <p><span class="math display">\[
 \ket j\rightarrow\frac 1 {2^{n/2}}(\ket 0+e^{2\pi i0.j_n}\ket 1)(\ket
 0+e^{2\pi i0.j_{n-1}j_{n}}\ket 1)\cdots(\ket 0+e^{2\pi i0.j_1\cdots
-j_{n-1}j_{n}}\ket 1)
+j_{n-1}j_{n}}\ket 1)\tag{17}
 \]</span></p>
 <h2 id="qft의-시간-복잡도">4. QFT의 시간 복잡도</h2>
 <hr />
