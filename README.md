@@ -58,3 +58,10 @@ Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 - 업데이트는 파일을 따로 만드는게 좋을듯
 - 옆에 사이드바도 만들어서 페이지 왔다갔다 할 수 있게 하고 싶음.(최근 글 10개 정도 메인에 띄우기)
 - Phase estimation 업데이트
+
+### 3. Update 230613
+
+#### 1.수정사항
+- phase estimation 추가
+- main page에 contact mail 추가
+- 추가 수정 x, 이제 시험공부 좀 할 것
