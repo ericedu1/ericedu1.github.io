@@ -18,6 +18,9 @@ Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 #### 1.4 도움!
    얕은 공부 수준이지만 이 길을 따라서 공부하는 누군가에게 도움이 될 수 있지 않을까...ㅎㅎ
 
+#### 1.5 이 github에 들어오는 분들에게
+   정말 그냥 즐기기 위해 만들고 있는 블로그입니다! 양자 역학적 내용, 수학이나 양자 알고리즘 관련된 전공 관련 내용들에 대해서 지적은 정말 감사하나, 블로그 디자인은 그냥 제 맘가는대로 꾸미것슴다... 응원의 한마디씩 해주세여. 혹시 아이디어나 내용에 대해서 궁금한점, 혹은 내용에 수정해야 할 부분이 있는 것 같아 연락을 해야겠다면, ericedu1@gmail.com 으로 메일 주세요! 메일은 항상 확인 중입니다😀.
+
 ### 2. 업로드 목표
 
 #### 2.1 컨텐츠 𝌞
@@ -26,10 +29,12 @@ Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 #### 2.2 주기 $T$
    주기는 1주일에 적어도 1개, 많으면 많을 수록 좋다.
 
-#### 2.3 수준
+#### 2.3 수준 Lv.
    우선 230612 기준 HTML, CSS, JavaScript를 공부해본적은 있지만, 약 3년전에 살짝 책만 봤던 수준이라 좋은 디자인 수준을 갖추지는 못할 것이다. 하지만 차근차근 공부해, 언젠가 Tistory 의 템플릿과 비슷한 수준의 디자인을 만들어 내고 싶다.
 
-## Update
+## Update 
+
+이 밑으로는 그 날에 수정해서 커밋했던 내용들에 대해 작성합니다. 부끄러우니 안보시는게 좋습니다.🥲
 
 ### 1. Update 230607
 
@@ -65,3 +70,11 @@ Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 - phase estimation 추가
 - main page에 contact mail 추가
 - 추가 수정 x, 이제 시험공부 좀 할 것
+
+### 4. Update 230614
+
+#### 1. 수정사항
+- Density Matrix 추가
+- Main page 정리 및 directory 정리.
+![[스크린샷 2023-06-14 오후 9.42.34.png|400]]
+(현재까지 디자인, 페이지에 컨텐츠를 더 채우면 멋있어지지 않을까?)
