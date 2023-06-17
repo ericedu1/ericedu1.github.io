@@ -78,3 +78,9 @@ Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 - Main page 정리 및 directory 정리.
 ![[스크린샷 2023-06-14 오후 9.42.34.png|400]]
 (현재까지 디자인, 페이지에 컨텐츠를 더 채우면 멋있어지지 않을까?)
+
+
+### 5. Update 230616
+
+#### 1. 수정사항
+- 페이지에 전체적으로 에러가 나있었다. directory를 정리하면서 이전에 지정해뒀던 파일 경로들이 고장난것. to main page를 누르면 없는 페이지 입니다가 나와서 페이지들에 대해 main page 디렉토리를 전면 수정해 줬다. 고쳤다!
