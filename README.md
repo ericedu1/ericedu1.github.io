@@ -84,3 +84,16 @@ Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 
 #### 1. 수정사항
 - 페이지에 전체적으로 에러가 나있었다. directory를 정리하면서 이전에 지정해뒀던 파일 경로들이 고장난것. to main page를 누르면 없는 페이지 입니다가 나와서 페이지들에 대해 main page 디렉토리를 전면 수정해 줬다. 고쳤다!
+
+### 6. Update 230630
+
+#### 1. 수정사항
+- sitemap을 업데이트했다. 기존의 sitemap은 jekyll을 이용해 만든 github pages에 적합하여 나의 웹페이지에는 옳지 않았다...(인터넷 복붙의 문제점). 따라서 sitemap에 직접 모든 페이지를 작성해서 넣는 방식을 채택했다(상당한 노가다😅). Jekyll로 아예 만들어놓은 것들을 다 갈아엎기는 상당한 귀찮음이 뒤따라서 이렇게 결정했다. 그 결과 드디어 google search console이 나의 sitemap을 인식하기 시작했다!!! 다음 그림은 직접 작성한 sitemap과 google search console 인식 화면이다.
+ ![[스크린샷 2023-06-30 오전 10.10.18.png]]
+ ![[스크린샷 2023-06-30 오전 10.17.34.png]]
+ 성공!
+ 
+#### 2. 게시물 update
+- QFT Qiskit 구현 update.
+- Machine Learning - 행렬 기초 update.
+- Machine Learning - 행렬 기초2 update.
