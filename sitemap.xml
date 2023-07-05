@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset2023-07-03T12:21:36+00:00     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://ww2023-07-03T12:21:36+00:00emaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-
-<2023-07-03T12:21:36+00:00loc>https://ericedu1.github.io/</loc>
+<url>
+  <loc>https://ericedu1.github.io/</loc>
   <lastmod>2023-07-03T12:21:36+00:00</lastmod>
 </url>
 <url>
