@@ -97,3 +97,11 @@ Solo project of ericedu (Yu-seong Jeon) , https://ericedu1.github.io
 - QFT Qiskit 구현 update.
 - Machine Learning - 행렬 기초 update.
 - Machine Learning - 행렬 기초2 update.
+
+### 7. Update 230707
+
+#### 1. 수정사항
+- 드디어 google에 내 웹페이지가 검색되기 시작했다. sitemap은 일단은 노가다 만들기로 하고, 시간날 때, sitemap 을 파일 구조에 따라 자동으로 작성해주는 코드를 짜봐야것다.
+
+#### 2. 게시물 update
+- grover search algorithm update.
