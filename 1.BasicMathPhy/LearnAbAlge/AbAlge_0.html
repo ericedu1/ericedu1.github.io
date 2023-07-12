@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>최적화 기본</title>
+  <title>0. 집합과 관계</title>
   <style>
 html {
 color: #1a1a1a;
@@ -299,349 +299,170 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">최적화 기본</h1>
+<h1 class="title">0. 집합과 관계</h1>
 </header>
-<p>writer : ericedu1</p>
-<p>date : 230707</p>
-<h2 id="라그랑주-승수법">1 라그랑주 승수법</h2>
+<p>writer : Yuseong Jeon</p>
+<p>date : 230712</p>
+<p>1., 2. 와 같이 앞에 숫자로 라벨링 되어있는 문장은 정의 혹은 정리를
+짚고 넘어간다. <span class="math inline">\(\cdot\)</span>으로 라벨링
+되어있는 문장은 예시를 표현한다. 이 페이지에서만 해당된다… 다른
+페이지에서는 반대이다.</p>
+<h2 id="집합">0.1 집합</h2>
 <hr />
-<h3 id="what-is-lagrange-multipliers">What is Lagrange multipliers?</h3>
-<p>일정한 제약하의 다원함수 극값 찾기 방법이다. 문제는 다음과 같이
-표현된다.</p>
-<p><span class="math display">\[
-\begin{align*}
-&amp;min\ f(x)\\
-&amp;s.t.\ g(x)=0
-\end{align*}
-\]</span></p>
-<p>엔트로피가 최대가 되는 지점을 총에너지 제한이 있을 때 찾기 문제가
-예시가 될 수 있다. 그 방법은 다음과 같다. 극값을 구하고 싶은 식에 제약이
-되는 식이 0이되도록 하여 일정한 값을 곱하고 더해주면 된다.</p>
-<p><strong>Example. For density matrix</strong> <span class="math inline">\(\sum_i\rho_i\ket i\bra i\)</span></p>
-<p>Entropy : <span class="math inline">\(S=\sum_i
-\rho_iln\rho_i\)</span></p>
-<p>Energy : <span class="math inline">\(E=\sum_i\rho_i\epsilon_i\)</span></p>
-<p>den mat : <span class="math inline">\(\sum_i\rho_i=1\)</span></p>
-<p><span class="math inline">\(\therefore
-F=\sum_i\rho_iln\rho_i-\beta(E-\sum_i\rho_i\epsilon_i)-\lambda(1-\sum_i\rho_i)\)</span>.</p>
-<p>→ entropy가 극값을 가지는 <span class="math inline">\(\rho_i\)</span>의 조건은 <span class="math inline">\(F\)</span>의 <span class="math inline">\(\rho_i,\beta,\lambda\)</span>에 대한 미분을 확인해
-알 수 있다.</p>
-<h3 id="일반적인-등제한-조건-최적화-문제-상황-lagrange-multiplier">일반적인
-등제한 조건 최적화 문제 상황, Lagrange Multiplier</h3>
-<p>일반적인 등제한 조건 최적화 문제의 상황은 d 차원 벡터 <span class="math inline">\(x\)</span> 가 있을 때, <span class="math inline">\(g(x)=0\)</span>이라는 제약조건 하에서 목표함수
-<span class="math inline">\(f(x)\)</span>를 최소화 시키는 <span class="math inline">\(x^*\)</span>벡터를 찾는 문제이다. 기하학적
-관점에서 <span class="math inline">\(g(x)=0\)</span>인 d-1 차원
-곡선상에서 <span class="math inline">\(f(x)\)</span>를 최소화 시키는
-지점을 찾으면 된다. 이때, 우리는 다음 사실을 알고 있다.</p>
+<h3 id="집합과-정의-on-definitions-and-the-notion-of-a-set">0.1.1 집합과
+정의, On Definitions, and the Notion of a Set</h3>
+<p>집합과 관련된 기초적인 정의를 짚고 넘어간다.</p>
+<ol type="1">
+<li>집합 <span class="math inline">\(S\)</span>는 요소가 모여
+만들어진다. 만약 어떤 요소 a가 집합 <span class="math inline">\(S\)</span>안에 속할 때, 우리는 그를 <span class="math inline">\(**a\in S**\)</span>로 표현한다.</li>
+<li>아무 요소가 존재하지 않는 집합은 정확히 단 한개 존재한다. 그러한
+집합을 <strong>공집합, empty set</strong>이라 부르고, <span class="math inline">\(\emptyset\)</span>와 같이 표기한다.</li>
+<li>집합을 그 속의 요소들에 대한 특징으로 정의할 수 있다. 혹은 단순히 그
+속의 요소들을 나열 함으로서 표현할 수 있다. 특징을 <span class="math inline">\(P(x)\)</span>라고 할 때, <span class="math inline">\(S=\{x|P(x)\}\)</span>로 표현하고, 이 의미는 <span class="math inline">\(P(x)\)</span>를 특징으로 하는 요소 x들의
+집합이라고 해석한다. 혹은 {1,3,4}와 같이 단순히 나열한다.</li>
+<li>집합은 <strong>잘 정의, well-defined</strong> 되어야 한다. 이 의미는
+임의로 어떤 객체를 뽑았을 때, 우리가 그 객체가 집합안에 들어있는지
+안들어있는지를 정확히 구별할 수 있어야 함을 의미한다.</li>
+</ol>
+<p>위의 정의를 숙지하면, 집합이 정확히 어떤 의미를 가지는 것인지 알 수
+있다. 집합과 정의는 뗄 수 없는 관계인데, 우리가 어떤 것에 대해서 정의를
+할 때, 정의는 <strong>필요충분 조건,if and only if</strong>에 대해서
+이야기하는 것이다. 추가적으로 부분 집합과 집합에 대한 몇가지 친숙한
+정의들을 짚고 넘어간다.</p>
+<ol type="1">
+<li>만약, 집합 B 속의 모든 요소가 A 속에 속할 때, 우리는 집합 B가 A의
+<strong>부분 집합</strong>이라고 말하고, <span class="math inline">\(B\subseteq A\)</span>라고 말한다. <span class="math inline">\(B\subset A\)</span>는 <span class="math inline">\(B\neq A\)</span>가 확정 되었을 때 사용한다.</li>
+<li>집합 A는 A의 <strong>improper subset</strong>이라고 말하고, 그 외의
+다른 부분집합을 <strong>proper subset</strong>이라고 정의한다.</li>
+<li>A와 B를 set이라고 할 때, <span class="math inline">\(A\times
+B=\{(a,b)|a\in A\ and\ b\in B\}\)</span>를 <strong>Cartesian
+Product</strong>라고 정의한다.</li>
+</ol>
+<h3 id="집합간의-관계-relations-between-sets">0.1.2 집합간의 관계,
+Relations Between Sets</h3>
+<p>집합 간의 관계 또한 집합으로 정의될 수 있다.</p>
+<ol type="1">
+<li>집합 A와 B 사이의 <strong>관계, relation은</strong> <span class="math inline">\(A\times B\)</span>의 부분집합으로 정의될 수 있다.
+<span class="math inline">\((a,b)\)</span>를 a와 b는 관계되어 있다 라고
+읽을 수 있다.</li>
+</ol>
+<p>이때, 대표적으로 우리가 알고 있는 관계를 가져와 직관적으로 이해해
+본다.</p>
 <ul>
-<li><span class="math inline">\(g(x)=0\)</span> 곡면에서 <span class="math inline">\(\nabla g(x)\)</span>는 곡면과 수직.</li>
-<li><span class="math inline">\(g(x)=0\)</span> 곡면 위 목표함수 최적화
-지점 <span class="math inline">\(x^*\)</span>에서 목표함수의 <span class="math inline">\(\nabla f(x^*)\)</span>는 곡면과 수직.</li>
+<li><p><strong>동등관계, equality relation</strong></p>
+<p>집합 S에 대해서 다음과 같은 관계를 동등관계라고 말한다.</p>
+<p><span class="math display">\[
+  \{(x,x)|x\in S\}\subset S\times S
+  \]</span></p>
+<p>이 관계를 =라는 부호로서 설명된다. <span class="math inline">\((x,x)\equiv x=x\)</span></p></li>
 </ul>
-<p>그럼 우리는 어떤 상수 <span class="math inline">\(\lambda\)</span>에
-대해서 다음과 같은 식을 만족할 것임을 안다.</p>
+<p>함수를 정의하면 다음과 같이 정의할 수 있다.</p>
+<ol type="1">
+<li><strong>함수, function</strong> <span class="math inline">\(\phi\)</span>가 있어 X와 Y사이를 연결할 때, 그것은
+각 <span class="math inline">\(x\in X\)</span>에 대해서 단 하나의 순서쌍
+<span class="math inline">\((x,y)\)</span>만을 가지는 relation이다.
+그러한 함수는 X와 Y 사이의 <strong>map, 혹은 mapping</strong>이라고
+표현하기도 한다. <span class="math inline">\((x,y)\rightarrow\phi(x)=y\)</span> 이고, X를
+<strong>정의역, domain</strong>이라고 정의하고, Y를 <strong>공역,
+codomain</strong>이라고 표현한다. <span class="math inline">\(\phi[X]=\{\phi(x)|x\in X\}\)</span>를
+<strong>치역, range</strong>라고 정의한다.</li>
+</ol>
+<ul>
+<li><p><strong>덧셈, addition</strong></p>
+<p>우리는 덧셈을 <span class="math inline">\(X=R\times R\)</span>, <span class="math inline">\(Y=R\)</span>인 <span class="math inline">\(X\rightarrow Y\)</span> mapping 으로 생각할 수
+있다.</p></li>
+</ul>
+<h3 id="기수-cardinality">0.1.3 기수, cardinality</h3>
+<ol type="1">
+<li><strong>기수, Cardinality</strong>란, 집합 속의 요소의 개수를
+말한다. 집합 <span class="math inline">\(X\)</span>에 대해서는 다음과
+같은 표기법을 따른다.</li>
+</ol>
 <p><span class="math display">\[
-\nabla f(x^*)+\lambda\nabla g(x^*)=0
+|X|:=cardinality\ of\ set\ X
 \]</span></p>
-<p>이때, 우리는 라그랑주 함수를 다음과 같이 정의한다.</p>
+<p>두 집합 <span class="math inline">\(Z\)</span>와 <span class="math inline">\(Z^+\)</span>는 같은 기수를 가질까? 우선 정답은
+그렇다. 그럼 왜 같은 기수를 가질까?</p>
+<ol type="1">
+<li><p><strong>1-1 함수</strong>란, 두 집합간의 관계로 정의되는 함수이며
+정의역 속의 요소와 공역속의 요소가 단 한개씩만의 관계를 가지는 함수를
+말한다. 수학적으로 다음과 같이 표기된다.</p>
 <p><span class="math display">\[
-L(x,\lambda)=f(x)+\lambda g(x)
+if\ x_1\neq x_2\in X, \phi(x_1)\neq\phi(x_2)\ then\ \phi(x)\ is\ 1-1
 \]</span></p>
-<p>함수 <span class="math inline">\(L\)</span>의 x에 대한 미분=0이 되는
-지점과 이 함수를 <span class="math inline">\(\lambda\)</span>에 대해
-미분 했을 때, 제약조건이 나오는 점을 참고하면, 우리는 <span class="math inline">\(L\)</span>의 무 제약 최적화로 문제를 전환한 것을
-알 수 있게 된다. 이때 <span class="math inline">\(\lambda\)</span>를
-라그랑주 승수라고 말한다.</p>
-<h3 id="부등식-제약-조건에서-최적화-kkt-조건">부등식 제약 조건에서
-최적화, KKT 조건</h3>
-<p>부등식 제약 조건 <span class="math inline">\(g(x)\leq0\)</span>이
-있을 때, 목표함수 <span class="math inline">\(f(x)\)</span>의 최적화
-하는 문제 또한 해결 가능하다. 문제는 다음과 같이 표현된다.</p>
+<p>그 대우로, <span class="math inline">\(if\ \phi(x_1)=\phi(x_2),
+x_1=x_2\)</span>, then <span class="math inline">\(\phi(x)\)</span> is
+1-1 또한 정의로 사용할 수 있다. 같은 함수값에 대해 한개의 정의역의
+요소와 연결되어야 한다는 점으로 기억할 수 있다.</p></li>
+</ol>
+<p>1-1 함수의 정의를 볼 때 주의 해야할 점은 well-defined function과
+헷갈리면 안된다는 점이다. 관계, 혹은 함수의 well-defined 성질은 다음과
+같이 정의된다.</p>
+<ol type="1">
+<li><p>함수가 아래 조건을 만족시키면 잘 정의된 함수, well-defined
+function이라고 한다. 이는 애초에 처음 함수를 만들 때 확인할 수 있도록
+해야한다.</p>
 <p><span class="math display">\[
-\begin{align*}
-&amp;min\ f(x)\\
-&amp;s.t.\ g(x)\leq0
-\end{align*}
+if\ \phi(x_1)\neq\phi(x_2),x_1\neq x_2, then\ \phi(x)\ is\ well-defined
 \]</span></p>
-<p><span class="math inline">\(g(x)=0\)</span>일 때(i)와 <span class="math inline">\(g(x)&lt;0\)</span>일 때(ii)로 문제를 나누어 생각할
-수 있다. (i)에서 문제는 등제한 조건의 문제와 동일하다. 하지만, <span class="math inline">\(\nabla f(x)\)</span>와 <span class="math inline">\(\nabla g(x)\)</span>의 방향이 서로 반대가 될
-것임을 고려하면, (i)에서 라그랑주 승수는 항상 양수이어야 할 것임을 알 수
-있다. (ii) 상황을 고려하면, <span class="math inline">\(g(x)&lt;0\)</span>을 만족하는 <span class="math inline">\(f(x)\)</span>무제약 최적화 문제임을 알 수
-있으므로, <span class="math inline">\(\lambda\)</span>가 0인 상황만을
-고려하면 된다. 따라서 다음과 같은 조건을 작성할 수 있다.</p>
+<p>이는 대우로 <span class="math inline">\(x_1=x_2,
+\phi(x_1)=\phi(x_2)\)</span>를 사용할 수 있다. 이는 정의역의 요소 한개당
+한개만 정의되어야 한다고 생각할 수 있어, 기존의 함수를 정의할 때
+고려되어야 함을 생각할 수 있다.</p></li>
+</ol>
+<p>1-1 함수가 만약 두개의 집합사이에서 정의될 수 있을 때, 우리는 그
+두개의 집합이 같은 기수를 가질 것을 생각할 수 있다. 따라서, <span class="math inline">\(Z\)</span>와 <span class="math inline">\(Z^+\)</span>사이의 1-1 함수를 정의하는 것은 쉽기
+때문에, 그 두 집합이 같은 기수를 가진다고 생각할 수 있는 것이다. 이때,
+1-1 함수의 <strong>역함수, inverse function</strong> 또한 well-defined
+성질을 만족할 수 있으므로 함수로서 정의될 수 있을 것이다. 따라서
+1-1함수에 대해서는 역함수를 정의할 수 있게 된다. 역함수는 <span class="math inline">\(\phi^{-1}\)</span>라고 작성한다.</p>
+<h3 id="분할과-동치-관계-partitions-and-equivalence-relations">0.1.4
+분할과 동치 관계, Partitions and Equivalence Relations</h3>
+<ol type="1">
+<li><strong>분할, Partitions</strong>는 집합 <span class="math inline">\(S\)</span>에 대해서 정의되며, 공집합이 아닌 부분
+집합들의 모임이다. 분할에서 임의의 요소는 무조건 단 한개의 부분집합에
+포함된다. 이때, 한개의 부분집합을 Cell이라 한다.</li>
+</ol>
+<p>우리는 요소 <span class="math inline">\(x\)</span>를 포함하는 cell을
+<span class="math inline">\(\bar x\)</span>로서 표기한다. 우리는 다음과
+같은 예제 또한 생각할 수 있다.</p>
+<ul>
+<li><p><strong>나머지 cells</strong></p>
+<p>우리는 임의의 n개의 cell로 <span class="math inline">\(Z^+\)</span>로
+나눌 수 있다. 그 cell은 <span class="math inline">\(0,\cdots,n-1\)</span>을 나머지로 가지는 정수들로
+구분될 수 있다.</p></li>
+</ul>
+<ol type="1">
+<li><strong>동치관계, equivalence relation</strong> <span class="math inline">\(\sim\)</span>은 다음 세가지 조건을 만족시키는 두
+집합간의 관계이다. 그 조건은 다음과 같다.
+<ol type="1">
+<li>(Reflexive), <span class="math inline">\(x\sim x\)</span></li>
+<li>(Symmetric), <span class="math inline">\(x\sim y, then\ y\sim
+x\)</span></li>
+<li>(Transitive), <span class="math inline">\(x\sim y,y\sim z, then\
+x\sim z\)</span>.</li>
+</ol></li>
+</ol>
+<p>이때, 우리는 동치관계와 분할에 관련된 정리를 하나 확인할 수 있다.</p>
+<ol type="1">
+<li><p><span class="math inline">\(S\)</span>가 공집합이 아닌 집합이고,
+그 집합 속에서 equivalence relation이 하나 정의될 때, 다음과 같은
+partitions의 cell 들이 발생한다.</p>
 <p><span class="math display">\[
-L(x,\lambda)=f(x)+\lambda g(x),\begin{cases}
-g(x)\leq0\\
-\lambda\geq0\\
-\lambda g(x)=0
-\end{cases}
+\bar a=\{x\in S|x\sim a\}
 \]</span></p>
-<p>위 제약은 위에서 설명한 사항들을 모두 포함한다. 위 제약조건을 KKT
-제약조건이라고 한다. (i) g(x)=0일 때, <span class="math inline">\(\lambda\)</span>는 양수. (ii) g(x)&lt;0일 때,
-<span class="math inline">\(\lambda\)</span>는 0.</p>
-<h3 id="등제한-부등제한을-모두-포함하는-일반적-제한-조건에서-문제">등제한,
-부등제한을 모두 포함하는 일반적 제한 조건에서 문제</h3>
-<p>선행문제가 <span class="math inline">\(h(x)=0, g(x)\leq0\)</span>을
-만족하는 벡터 <span class="math inline">\(x\)</span>에 대해 <span class="math inline">\(f(x)\)</span>를 최적화하는 문제를 해결하는 것일
-때, 등제한, 부등제한을 모두 포함하는 일반적 제한조건 문제는 다음과 같은
-제약조건에서 다음과 같은 라그랑주 함수를 최적화하는 문제라고 생각할 수
-있다. 우선 문제는 아래와 같이 표현된다.</p>
-<p><span class="math display">\[
-\begin{align*}
-&amp;min\ f(x)\\
-&amp;s.t.\ h(x)=0\ \&amp;\ g(x)\leq0
+<p>brfprf. 임의의 요소 <span class="math inline">\(a\in S\)</span>는
+무조건 <span class="math inline">\(\bar a\)</span>가 존재할 것이
+분명하다. 그리고, 임의의 요소 <span class="math inline">\(a\neq b\in
+S\)</span>에 대해서 <span class="math inline">\(a\sim b\)</span>이면
+<span class="math inline">\(\bar a=\bar b\)</span>임을 보이면 된다.
+그럼, 한개의 요소는 무조건 한개의 cell에 속함을 증명할 수
+있게된다.</p></li>
+</ol>
+<p>이때, equivalence relation에 의해 분할된 그 cell들은 equivalence
+class라고 부른다.</p>
 
-\end{align*}
-\]</span></p>
-<p>위 문제의 라그랑주 함수는 다음 수식을 따른다.</p>
-<p><span class="math display">\[
-L(x,\lambda,\mu)=f(x)+\mu h(x)+\lambda g(x),\begin{cases}
-g(x)\leq0\\
-\lambda\geq0\\
-\lambda g(x)=0
-\end{cases}
-\]</span></p>
-<h3 id="쌍대-문제">쌍대 문제</h3>
-<p>위의 문제는 KKT조건을 적용해 해결할 수 있지만 <strong>주 문제(primal
-problem)와</strong> <strong>듀얼문제(dual problem, 쌍대 문제)</strong>의
-두가지 각도에서 새롭게 해결 가능하다. 주 문제를 다시 표현하면 아래와
-같다.</p>
-<p><span class="math display">\[
-\begin{align*}
-&amp;min\ f(x)\\
-&amp;s.t.\ h(x)=0,\ g(x)\leq0
-\end{align*}
-\]</span></p>
-<p>우리는 주 문제의 해를 optimal solution, <span class="math inline">\(x^*\)</span>으로 나타낸다. 그리고 dual problem을
-정의한다. 그를 나타내는 dual function은 기존의 라그랑주 함수의 하한을
-나타낸다. 그 dual function <span class="math inline">\(\Gamma\)</span>
-<span class="math inline">\((R^m\times R^n\rightarrow
-R\)</span>,m개의 등식제약, m개의 부등식 제약<span class="math inline">\()\)</span> 은 아래 수식으로 정의된다.</p>
-<p><span class="math display">\[
-\Gamma(\lambda,\mu)=\inf_{x}L(x,\lambda,\mu)
-\]</span></p>
-<p>여기서 <span class="math inline">\(\inf_{x}\)</span>는 infimum,
-하한을 나타낸다. 이때 Lagrange 함수를 최소화 시키는 영역에는 제약조건을
-따르지 않은 부분 또한 포함된다. 따라서 우리는 다음과 같은 부등식을 얻을
-수 있다.</p>
-<p><span class="math display">\[
-\Gamma(\lambda,\mu)\leq L(x^*,\lambda,\mu)
-\]</span></p>
-<p>그 이유는 더 넓은 공간에서 라그랑주 함수를 최소화 시킨 것이 <span class="math inline">\(\Gamma\)</span>이기 때문이고, 우리는 다음 조건
-또한 알 수 있다.</p>
-<p><span class="math display">\[
-\mu h(x)+\lambda g(x)\leq0
-\]</span></p>
-<p>이 부등식으로 인해 우리는 다음과 같은 전개를 할 수 있다.</p>
-<p><span class="math display">\[
-L(x^*,\lambda,\mu)=f(x^*)+\mu h(x^*)+\lambda g(x^*)\leq f(x^*)
-\]</span></p>
-<p>최종적으로 다음과 같은 부등식을 얻는다.</p>
-<p><span class="math display">\[
-\Gamma(\lambda,\mu)\leq f(x^*)
-\]</span></p>
-<p>주 문제 해결의 중요점은 <span class="math inline">\(f(x)\)</span>를
-최소화 시키는 <span class="math inline">\(x^*\)</span>를 계산하는
-것이다. 그 값을 찾는 것의 의미는, 우리의 dual function을 최대화 시키는
-<span class="math inline">\(\lambda,\mu\)</span>를 찾는 것으로 바꿔
-생각할 수 있다. 따라서 다음 문제를 주 문제의 쌍대 문제로 전환시킬 수
-있게 된다.</p>
-<p><span class="math display">\[
-\max_{\lambda,\mu}\Gamma(\lambda,\mu)\ s.t.\ \mu\geq0
-\]</span></p>
-<p>이때, 우리는 위 문제의 최적화 값 <span class="math inline">\(d^*\)</span>는 항상 주문제의 최적값 <span class="math inline">\(f^*\)</span>보다 작거나 같을 것으로 생각할 수
-있다. 만약 두 값이 같은 경우, 우리는 강한 쌍대성 성립이라 말한다.</p>
-<h3 id="정리">정리</h3>
-<p>라그랑주 승수법 학습 정리이다.</p>
-<p>다음 문제를 해결하고 싶다.</p>
-<p><span class="math display">\[
-\begin{align*}
-&amp;min\ f(x)\\
-&amp;h(x)=0,g(x)\leq0
-\end{align*}
-\]</span></p>
-<ul>
-<li>이때 h(x)관련 조건만 있다면 등제약 조건 문제로 Lagrange 승수법을
-적용해 쉽게 해결한다.</li>
-<li>두 제약조건 모두 존재하면 KKT 조건을 따르는 Lagrange 함수 최적화
-문제를 해결한다.</li>
-<li>강한 쌍대성을 가지는 문제라면, 쌍대 문제를 해결한다.</li>
-</ul>
-<h2 id="컨벡스-함수-개념">2. 컨벡스 함수 개념</h2>
-<hr />
-<h3 id="점-선분-직선">점, 선분, 직선</h3>
-<p>두 개의 점 <span class="math inline">\(x_1, x_2\)</span>가 주어졌을
-때, 우리는 그 두 점을 지나는 직선을 다음과 같이 작성할 수 있다.</p>
-<p><span class="math display">\[
-y=wx_1+(1-w)x_2
-\]</span></p>
-<p>이 직선은 두 점을 잇는 직선이다. <span class="math inline">\(0\leq
-w\leq 1\)</span>인 조건이 있으면 이는 <span class="math inline">\(x_1,x_2\)</span>를 연결하는 선분이다. 이때 <span class="math inline">\(w\)</span>가 1에 가까워 지면 위 식은 <span class="math inline">\(x_1\)</span>를 표현하고 0에 가까워지면 <span class="math inline">\(x_2\)</span>를 표현하므로, 가중치라고 생각할 수
-있다.</p>
-<h3 id="아핀-셋-컨벡스-셋affine-set-convex-set">아핀 셋, 컨벡스
-셋(affine set, convex set)</h3>
-<p><strong>Affine</strong></p>
-<p>아핀 셋 <span class="math inline">\(C\)</span>는 두 점을 잇는 직선을
-포함하는 공간을 말한다. 두개 점에 국한되지 않고 여러 개 점에 대해 이야기
-할 때, 우리는 위에서의 표현을 다음과 같이 바꿀 수 있다.</p>
-<p><span class="math display">\[
-y=w_1x_1+w_2x_2+\cdots+w_nx_n,\sum_iw_i=1
-\]</span></p>
-<p>이를 포인트 <span class="math inline">\(\{x_i\}\)</span>에 대한 아핀
-조합(affine combination)이라고 한다. 이때, C 속에 <span class="math inline">\(\{x_i\}\)</span>가 속하고, <span class="math inline">\(\sum_iw_i=1\)</span>을 만족할 때, 아핀 조합은
-C속에 속한다. 아핀함수의 정의는 다음과 같다.</p>
-<p><span class="math display">\[
-f(\vec x)=W\vec x+b
-\]</span></p>
-<p><strong>Convex</strong></p>
-<p>아핀 셋의 정의와 유사하게 컨벡스 셋은 점 사이의 선분을 포함하는
-집합을 말한다. 컨벡스 조합 또한 affine과 유사하다. 추가로 hull이라는
-개념에 대해 보면, convex hull이란, 해당 점들을 모두 포함하는 그 끝점들을
-이은 공간이다.</p>
-<h3 id="초평면-반공간">초평면, 반공간</h3>
-<p>초평면, hyperplane은 아래와 같은 집합을 말한다.</p>
-<p><span class="math display">\[
-hyperplane :\{x|w^Tx=b\}
-\]</span></p>
-<p>이때, w는 0벡터가 아닌 n차원 가중치 벡터이고, b는 1차원 스칼라 값을
-의미한다. <span class="math inline">\(b=w^Tx_0\)</span>라 했을 때
-hyperplane을 <span class="math inline">\(\{x|w^T(x-x_0)=0\}\)</span>으로
-표현도 가능하다. 이때 <span class="math inline">\(x-x_0\)</span>는 <span class="math inline">\(w\)</span>와 수직한 벡터임을 알 수 있다. 이
-초평면에 의해 전체공간이 반으로 나뉘게 되는데 나뉘는 공간을 반공간이라고
-한다. 이렇게 나뉜 반공간은 컨벡스 셋이지만 아핀셋은 아니게 된다.</p>
-<h3 id="컨벡스-함수">컨벡스 함수</h3>
-<p>컨벡스 함수란, 정의역이 컨벡스 셋이고, 모든 데이터 포인트 <span class="math inline">\(x_1,x_2\)</span>와 <span class="math inline">\(0\leq w\leq 1\)</span>에 대해 다음 부등식, 얀센
-부등식을 만족하는 함수를 말한다.</p>
-<p><span class="math display">\[
-f(wx_1+(1-w)x_2)\leq wf(x_1)+(1-w)f(x_2)
-\]</span></p>
-<p>임의의 두 점에 대해 내분점을 대입한 함수값이 각 점의 함수값의
-내분점보다 작은 상황이므로, 기울기가 증가하는 함수를 생각할 수 있다.
-컨벡스 함수의 반대는 콘케이브 함수이다. 콘케이브 함수는 -f가 컨벡스한
-함수를 말한다. 만약 어떤 함수가 콘케이브하면서 컨벡스하면, 그 함수는
-아핀 함수라고 얘기한다. 컨벡스 함수로는 지수함수, 절댓값 함수, 멱함수
-등이 있다.</p>
-<h3 id="차-미분-조건">1,2차 미분 조건</h3>
-<p>우선 컨벡스 함수에 대해서 이해할 때, 기울기가 증가하는 함수로 학습을
-했으니 기울기에 해당하는 미분을 학습한다. 분석을 하기 위해서 컨벡스 함수
-f(x)는 미분가능하다 라는 조건을 가지고 분석한다. 미분 가능하면, 그
-함수의 1차 미분인 gradient가 존재한다. 기울기의 미분인 2차 미분은
-기울기가 증가하는 함수이므로, 0보다 크거나 같아야 함은 직관적으로 이해할
-수 있다.</p>
-<p><span class="math display">\[
-\nabla^2f(x)\geq0
-\]</span></p>
-<h3 id="얀센-부등식의-일반화">얀센 부등식의 일반화</h3>
-<p>위에서 얀센 부등식을 다뤘었다. 그 부등식은 아래와 같다.</p>
-<p><span class="math display">\[
-f(wx_1+(1-w)x_2)\leq wf(x_1)+(1-w)f(x_2)
-\]</span></p>
-<p>이를 일반화하여 다음과 같이 작성할 수 있다.</p>
-<p><span class="math display">\[
-f(w_1x_1+\cdots w_nx_n)\leq w_1f(x_1)+\cdots+w_nf(x_n)
-\]</span></p>
-<p><span class="math inline">\(E(x)\)</span>를 x의 기댓값으로서
-정의하면, 이는 다음과 같은 표현과 동일하다.</p>
-<p><span class="math display">\[
-f(E(x))\leq E(f(x))
-\]</span></p>
-<h3 id="컨벡스-성질의-보존">컨벡스 성질의 보존</h3>
-<p><span class="math inline">\(f(x)\)</span>가 컨벡스 함수일 때, 그
-컨벡스 성질이 보존되는 함수의 변환 조건을 알아본다. 컨벡스 함수의 비음수
-선형 결합은 컨벡스하다. 모든 i에 대해 <span class="math inline">\(w_i\geq 0,f_i\ is\ convex\)</span> 성질을 만족하면
-다음과 같이 정의된 함수 <span class="math inline">\(f\)</span> 또한
-컨벡스 함을 의미한다.</p>
-<p><span class="math display">\[
-f=w_1f_1+\cdots+w_kf_k
-\]</span></p>
-<p>컨벡스 함수 집합에 대해 최댓값을 구하는 함수 또한 컨벡스하고, 컨벡스
-함수의 아핀 변환 또한 컨벡스하다.</p>
-<h2 id="컨벡스-최적화-문제">3. 컨벡스 최적화 문제</h2>
-<hr />
-<p>우리는 위에서 일반적인 최적화 문제를 다음과 같이 정의했었다.</p>
-<p><span class="math display">\[
-\begin{cases}
-min\ f(x)\\
-subject\ to\begin{cases}
-g_i(x)\leq 0,\forall i\\
-h_j(x)=0,\forall j
-\end{cases}
-\end{cases}
-\]</span></p>
-<p>이때, 만약 최적화 문제가 다음과 같이 정의 될 때, 우리는 컨벡스 최적화
-문제라고 말한다.</p>
-<p><span class="math display">\[
-\begin{cases}
-min\ f(x)\\
-subject\ to\begin{cases}
-g_i(x)\leq 0,\forall i\\
-w^T_jx=b_j,\forall j
-\end{cases}
-\end{cases}
-\]</span></p>
-<p>일반적 최적화 문제에서 <span class="math inline">\(h(x)\)</span>가
-아핀함수를 만족하고, <span class="math inline">\(f(x)\)</span>가 컨벡스
-함수일 때 컨벡스 최적화 문제라고 한다. 우리는 또한 쌍대함수에 대한
-정의를 하여, 강한 쌍대성에 대한 논의를 하였다. 컨벡스 최적화 문제에 대해
-해결할 때 <span class="math inline">\(x^*,\lambda^*,v^*\)</span>에서 KKT
-조건을 만족하면, 우리의 문제는 이 set에서 강한 쌍대성을 만족하며,
-쌍대문제로 완벽히 전환할 수 있게 된다.</p>
-<h2 id="optimization-metods">4. Optimization Metods</h2>
-<hr />
-<h3 id="gradient-descent">Gradient Descent</h3>
-<p>Gradient란 스칼라 장이 주어졌을 때, 그 장위에서 가장 가파른
-방향으로의 벡터장을 의미한다. 그 gradient의 계산 방법은 다음과 같다.</p>
-<p><span class="math display">\[
-\nabla f(\vec x)=\begin{bmatrix}
-\partial_{x_1}f(\vec x)\\
-\partial_{x_2}f(\vec x)\\
-\vdots\\
-\partial_{x_n}f(\vec x)
-\end{bmatrix}
-\]</span></p>
-<p>위 계산을 통하면, 함수 <span class="math inline">\(f(\vec
-x)\)</span>에서 변화량이 가장 큰 방향으로의 벡터를 반환하게 되고, 이
-계산결과를 이용하는 최적화 방법을 gradient descent 방법, <strong>경사
-하강법</strong>이라고 부른다. 경사하강법은 다음과 같은 순서를
-따른다.</p>
-<p><span class="math display">\[
-\begin{align*}
-&amp;1.\ \theta_{t+1}=\theta_t+\nabla\theta_t\\
-&amp;2.\ \nabla\theta_t=-\eta\nabla f(\theta_t)\\
-&amp;3.\ repeat,\ converge
-\end{align*}
-\]</span></p>
-<p>Gradient가 변화량이 가장 큰 방향으로의 벡터를 반환하므로, 그
-반대방향으로 진행해야 감소하는 방향으로 이동할 수 있다. 따라서 원하는
-step 크기에 의한 상수 <span class="math inline">\(\eta\)</span>와 -를
-곱해 변화량을 지정해주고 그 값을 원래 값에 더해 벡터의 이동을
-진행시킨다. <span class="math inline">\(f(\theta)\)</span>가
-converge할때 까지 반복하면, 최소가 되는 부분을 계산할 수 있다.</p>
-<h3 id="stochastic-gradient-descent">Stochastic Gradient Descent</h3>
-<p>트레이닝 데이터 전체에 대해 Gradient descent를 진행하는 경우가
-있는데, 이 계산을 배치 그래디언트 디센트(Batch Gradient Descent)라고
-부른다. 이러한 과정은 많은 리소스를 사용하므로 계산할 때 비효율적인 면이
-존재한다. 그러나, 하나의 샘플을 뽑아 GD를 시행하면, 효율적이게 연산을 할
-수 있다. 이러한 방법을 확률적 경사하강법, Stochastic Gradient
-Descent라고 부른다. 그러나 적절하지 못한, 조금 큰 <span class="math inline">\(\eta\)</span>를 지정하면, 최적해에 수렴하지 못하는
-경우 또한 존재할 수 있다. 따라서, 학습률을 조절하면서 계산을 시행하도록
-한다. Stocahstic 과정을 시행할 때, 샘플을 여러개 뽑아 계산을 시행하는
-것을 mini batch gradient descent라고 부른다. 이 방법은 SVM, linear
-regression 등의 방법에서 유용하게 사용될 수 있다.</p>
-<h3 id="추가적인-optimization-methods">추가적인 optimization
-methods</h3>
-<ul>
-<li>momentum</li>
-<li>Nesterov Accelerated Gradient</li>
-<li>Adagrad</li>
-<li>Adadelta</li>
-<li>RMSprop</li>
-<li>Adam</li>
-<li>AdaMax</li>
-<li>Nadam 등.</li>
-</ul>
-<p>위에서 언급만 한 방법들은 머신러닝 학습 모델들에대해 추가적으로
-학습하면서 배우기로 한다.</p>
+<p>reference. A First Course in Abstract Algebra, John B. Fraleigh</p>
 
 <a href="#" onclick="location.href='../../index.html'">To main page</a>
 
