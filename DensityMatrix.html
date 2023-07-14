@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>행렬기초2</title>
+  <title>Density Matrix</title>
   <style>
 html {
 color: #1a1a1a;
@@ -301,173 +301,90 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.mhchemParser=void 0;var r=fun
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">행렬기초2</h1>
+<h1 class="title">Density Matrix</h1>
 </header>
 <p>writer : ericedu1</p>
-<p>date : 230630</p>
-<h2 id="랭크-차원-rank-dimension">1 랭크, 차원 (rank, dimension)</h2>
+<p>date : 230614</p>
+<h2 id="introduction">1. Introduction</h2>
 <hr />
-<h3 id="벡터공간-기저-vector-space-basis">1.1 벡터공간, 기저 (vector
-space, basis)</h3>
-<p>벡터 공간 <span class="math inline">\(V\)</span> 이란, 체 <span class="math inline">\(F\)</span> 위에서 정의되며 벡터합과 스칼라 곱에
-대해서 닫혀있는 공간을 말한다. 쉽게 말해, 공간 내부의 모든 벡터 사이
-합의 결과가 되는 벡터가 다시 그 공간 안에 존재하며, 공간이 정의된 체
-속의 스칼라 값에 대한 곱의 결고로 나온 벡터가 다시 그 공간 속에
-존재하면, 그 공간을 벡터공간이라고 말하는 것이다.(쉽지 않다) 이때,
-우리는 몇가지 특이한 벡터를 집합 <span class="math inline">\(S\)</span>
-으로 그 공간속에서 끄집어 낼 수 있는데, 그 벡터 집합이 만약 서로 선형
-독립이고, 그 벡터들의 선형결합으로 벡터공간 안의 모든 벡터를 표현할 수
-있으면, 우리는 그 벡터 집합이 벡터 공간을 생성(span)한다고 말하며,
-다음과 같이 표기한다.</p>
-<p><span class="math display">\[
-V=span(S)
-\]</span></p>
-<p>그 예시로, 2차원 벡터 공간에 대해 span set은 <span class="math inline">\(\{(0,1),(1,0)\}\)</span>이라 할 수 있다. 그 이유는
-다음과 같다.</p>
-<p><span class="math display">\[
-\forall v\in V,\exists a_1,a_2\in R, such\ that\ v=a_1(1,0)+a_2(0,1)
-\]</span></p>
-<p>이때 선형독립이란 서로가 서로를 만들어 내지 못한다는 의미를 가지고
-있다. 임의의 벡터공간 <span class="math inline">\(V\)</span>에 대해서
-다음과 같은 식을 만족하는 스칼라 집합 <span class="math inline">\(\{a_1,\cdots,a_n\}\)</span>속에 벡터 집합 <span class="math inline">\(\{v_1,\cdots,v_n\}\)</span>에 대해 <span class="math inline">\(a_i\neq0\)</span>인 <span class="math inline">\(i\)</span>가 존재하지 않을 때, 선형 독립을
-만족한다.</p>
-<p><span class="math display">\[
-0=a_1v_1+\cdots+a_nv_n
-\]</span></p>
-<p>이때 우리는 간단하게 기저는 유일하지 않다는 것을 생각할 수 있다. 이에
-대한 증명은 생략하다.</p>
-<h3 id="몇가지-정의">1.2 몇가지 정의</h3>
-<ul>
-<li><strong>차원(dimension)</strong>이란 어떤 벡터공간 <span class="math inline">\(V\)</span>가 존재할 때, 그 벡터공간의 최소한의
-기저벡터의 수를 차원이라고 한다. 일상생활을 보내는 3차원 공간의 이름이
-3차원인 이유도 이 때문이다.</li>
-<li><strong>랭크(rank)</strong>란, 어떤 행렬 <span class="math inline">\(A\)</span>에 대해서 그 행렬의 열벡터가 span하는
-공간의 차원을 rank라고 한다.</li>
-<li><strong>영공간(null space)</strong>이란, 행렬 <span class="math inline">\(A\)</span>에 대해서 <span class="math inline">\(Ax=0\)</span>을 만족하는 모든 벡터 <span class="math inline">\(x\)</span>의 집합을 말한다.</li>
-<li><strong>직교행렬(orthogonal matrix)</strong>이란, 어떤 행렬의
-행벡터와 열벡터가 유클리드 공간의 정규직교 기저를 이루는 행렬을
-의미한다. Unitary matrix 속에 속하는 행렬로 생각할 수 있다.</li>
-</ul>
-<h2 id="고윳값-교유벡터-eigen-value-eigen-vector">2 고윳값, 교유벡터
-(eigen value, eigen vector)</h2>
-<hr />
-<p>어떤 행렬 <span class="math inline">\(A\)</span>가 주어질 때, 그
-eigen value (<span class="math inline">\(\lambda\)</span>) , vector
-<span class="math inline">\(\vec x\)</span> 는 다음과 같은 식을 따르는
-scalar, vector값으로 정의된다.</p>
-<p><span class="math display">\[
-A\vec x=\lambda \vec x
-\]</span></p>
-<p>행렬의 선형변환에 의해 길이만 변하는 벡터라고 생각할 수 있다.</p>
-<h2 id="분해-decomposition">3 분해 (decomposition)</h2>
-<hr />
-<h3 id="닮음-similar">3.1 닮음 (similar)</h3>
-<p>닮음이란, 다음수식을 만족하는 가역행렬 <span class="math inline">\(P\)</span>가 존재하는 두 다른 행렬 <span class="math inline">\(A,B\)</span>를 말한다.</p>
-<p><span class="math display">\[
-P^{-1}AP=B
-\]</span></p>
-<p>만약 이 행렬 <span class="math inline">\(P\)</span>가 직교행렬일
-경우, <span class="math inline">\(A,B\)</span>는 <strong>직교
-닮음(orthogonally similar)</strong>라고 말한다. 그리고 직교 닮음 관계의
-두 행렬 <span class="math inline">\(A,B\)</span>와 <span class="math inline">\(P\)</span>가 직교 행렬 인 경우와 <span class="math inline">\(B\)</span>가 대각 행렬일 수 있을 때, <span class="math inline">\(P\)</span>는 <span class="math inline">\(A\)</span>를 <strong>직교 대각화</strong> 한다고
-말한다. 이때, <span class="math inline">\(A\)</span>는 <strong>직교
-대각화 가능 행렬</strong>이 된다. <span class="math inline">\(A\)</span>가 직교 대각화 가능 행렬인 경우, <span class="math inline">\(A=A^T\)</span>를 만족하는 행렬이어야 한다. 이렇게
-행렬과 그 행렬의 전치행렬이 동일한 행렬을 대칭행렬이라고 한다.</p>
-<h3 id="고윳값-분해-eigen-value-decomposition">3.2 고윳값 분해 (eigen
-value decomposition)</h3>
-<p><strong>고윳값 분해</strong>란 직교 대각화의 한 종류로, 정사각 행렬
-<span class="math inline">\(A\)</span>에 대해 eigen vector와 eigen
-value를 이용해 다음과 같이 행렬을 분해하는 것을 말한다.</p>
-<p><span class="math display">\[
-A = \begin{bmatrix}
-u_1&amp;u_2&amp;u_3
-\end{bmatrix}\begin{bmatrix}
-\lambda_1&amp;0&amp;0\\
-0&amp;\lambda_2&amp;0\\
-0&amp;0&amp;\lambda_3
-\end{bmatrix}\begin{bmatrix}
-u_1^T\\
-u_2^T\\
-u_3^T
-\end{bmatrix}
-\]</span></p>
-<p>이때 <span class="math inline">\(\{u_i\}\)</span>는 고유 벡터 set,
-<span class="math inline">\(\{\lambda_i\}\)</span>는 고윳값 set이다.
-위의 결과는 양자역학 기초에서 배우는 spectral decomposition과
-동일하다.</p>
-<p><span class="math display">\[
-A=\sum_i\lambda_i\ket {u_i}\bra{u_i}
-\]</span></p>
-<h3 id="특이값-분해-singular-value-decomposition">3.3 특이값 분해
-(singular value decomposition)</h3>
-<p><strong>특이값 분해</strong>란 정사각행렬이 아닌 일반적인 <span class="math inline">\(n\times m\)</span>행렬에 대해 정의되는 분해이다.
-주성분 분석과 같은 차원 축소 분야에서 많이 쓰인다. 차원 축소란 기존의
-행렬의 크기가 <span class="math inline">\(n\times p\)</span>일 때,
-다시말해 <span class="math inline">\(p\)</span>차원에 <span class="math inline">\(n\)</span>개의 점이 존재한다 생각할 때, 기존의
-<span class="math inline">\(p\)</span>차원을 <span class="math inline">\(p&gt;d\)</span>인 <span class="math inline">\(d\)</span>차원의 부분공간을 찾아 <span class="math inline">\(n\)</span>개의 점을 사영시키는 것이라고 생각할 수
-있다. 그 방법은 정사각행렬이 아닌 행렬을 강제로 정사각 행렬로 만들어준
-다음 (<span class="math inline">\(A^TA\)</span> 와 같은 연산을 통해),
-만들어진 정사각 행렬을 고윳값 분해하면 된다. 특이값 분해 또한, 양자 역학
-기초에서 배우는 Polar decomposition, Singular value decomosition을
-참고하면 이해하기 쉽다.</p>
-<h2 id="이차식-표현-quadratic-form">4 이차식 표현 (quadratic form)</h2>
-<hr />
-<p>이차식 표현이란 다음과 같은 행렬과 벡터의 관계식을 말한다.</p>
-<p><span class="math display">\[
-x^TWx
-\]</span></p>
-<p>이를 알고있는 dirac notation으로 바꿔 표현하면 다음과 같다.</p>
-<p><span class="math display">\[
-\bra xW\ket x
-\]</span></p>
-<p>이 연산에 대해 다음과 같은 몇가지 정의들을 할 수 있다.</p>
-<ul>
-<li><p>양정치 행렬, <strong>Positive Definite matrix</strong></p>
-<p>양정치 행렬은 다음과 같은 관계식을 따르는 행렬을 말한다.</p>
-<p><span class="math display">\[
-  \forall x\neq0\in V,\ x^TWx&gt;0
-  \]</span></p>
-<p>양정치 행렬이 가지는 특징은 모든 고윳값이 양수이다.</p></li>
-<li><p>음정치 행렬, <strong>Negative Definite matrix</strong></p>
-<p>음정치 행렬은 양정치 행렬과 반대되는 부등호 관계를 가지는 행렬을
-말한다.</p></li>
-</ul>
-<p>만약 부등호 관계식에 등호가 포함되게 되면, 준 양정치 혹은 준 음정치
-행렬이라 말한다.</p>
-<h2 id="벡터의-미분">5 벡터의 미분</h2>
-<hr />
-<p>타겟 데이터 y를 가중치 벡터 <span class="math inline">\(x=(x_1,\cdots,x_n)^T\)</span>로 미분한다고 할 때,
-그 미분표현식은 다음과 같이 표현한다.</p>
-<p><span class="math display">\[
-\frac{\partial y}{\partial\vec x}=\begin{bmatrix}
-\frac{\partial y}{\partial x_1}\\
-\frac{\partial y}{\partial x_2}\\
-\vdots\\
-\frac{\partial y}{\partial x_n}
-\end{bmatrix}
-\]</span></p>
-<p>머신러닝을 학습할 때, 주로 관심있는 미분은 데이터 벡터 <span class="math inline">\(x\)</span>와 가중치를 곱한 <span class="math inline">\(y=w^Tx=x^Tw\)</span>의 <span class="math inline">\(x\)</span>이다. 이에 대한 미분을 확인해보면 다음과
-같이 정리할 수 있다.</p>
-<p><span class="math display">\[
-\frac{\partial}{\partial x_i}w^Tx =
-\begin{bmatrix}
-\frac{\partial}{\partial x_1}(w_1x_1+\cdots+w_nx_n)\\
-\frac{\partial}{\partial x_2}(w_1x_1+\cdots+w_nx_n)\\
-\vdots\\
-\frac{\partial}{\partial x_n}(w_1x_1+\cdots+w_nx_n)\\
-\end{bmatrix}=
-\begin{bmatrix}
-w_1\\
-w_2\\
-\vdots\\
-w_n
-\end{bmatrix}=w
-\]</span></p>
-<p>추가적으로 이후에 벡터 미분을 할 것이다. 이는 사실 scalar에 대한
-gradient <span class="math inline">\(\nabla y\)</span>로 해석이
-가능하다.</p>
+<p>When our state could be <span class="math inline">\(\ket{\psi^i}\)</span> in probability <span class="math inline">\(\omega_i\)</span> for <span class="math inline">\(i=\pm1\)</span>, we can write our ensemble average
+of some physical observable <span class="math inline">\(\hat
+\Omega\)</span> as, <span class="math display">\[
+\langle\hat\Omega\rangle=\sum_{i=\pm1}\omega_i\bra{\psi^i}\hat
+\Omega\ket{\psi^i}\tag1
+\]</span> then, for some complete orthonormal basis set <span class="math inline">\(\{\ket n\}\)</span>, use <span class="math inline">\(\sum_n\ket n\bra n=\hat I\)</span>, <span class="math display">\[
+\begin{align*}
+\langle\hat\Omega\rangle&amp;=\sum_{i=\pm1}\sum_n\omega_i\bra{\psi^i}\hat
+\Omega\ket n\langle n\ket{\psi^i}\\
+&amp;=\sum_n\bra n\sum_i\omega_i\ket{\psi^i}\bra{\psi^i}\hat\Omega\ket
+n\\
+&amp;=tr(\sum_i\omega_i\ket{\psi^i}\bra{\psi^i}\hat\Omega)
+= tr(\hat\rho\hat\Omega)
+\end{align*}\tag2
+\]</span> when we say <span class="math inline">\(\sum_i\omega_i\ket{\psi^i}\bra{\psi^i}=\hat\rho\)</span>.
+We call this <span class="math inline">\(\hat\rho\)</span> as density
+operator of state.</p>
 
-<a href="#" onclick="location.href='../../index.html'">To main page</a>
+<p><strong>Definition.</strong> Density Operator</p>
 
+<p>If some state is in <span class="math inline">\(\ket{\psi^i}\)</span>
+in probability <span class="math inline">\(\omega_i\)</span>, we define
+the state’s density operator as, <span class="math display">\[
+\hat\rho=\sum_i\omega_i\ket{\psi^i}\bra{\psi^i}\tag3
+\]</span></p>
+<h2 id="basic-properties-of-density-operator">2. Basic Properties of
+Density operator</h2>
+<hr />
+<p>There is some basic properties of Density operator. 1. <span class="math inline">\(\hat\rho\)</span> is hermitian 2. <span class="math inline">\(tr(\hat\rho)=1\)</span> 3. <span class="math inline">\(\hat\rho\)</span> is positive definite operator
+Here is the proof.</p>
+
+<p><strong>Prove 1.</strong></p>
+
+<p>We can write arbitrary density operator as <span class="math inline">\(\hat\rho=\sum_i\omega_i\ket{\psi^i}\bra{\psi^i}\)</span>.
+Check Hermitian conjugate. <span class="math display">\[
+\begin{align*}
+\hat\rho^\dagger=(\sum_i\omega_i\ket{\psi^i}\bra{\psi^i})^\dagger=\sum_i\omega_i^*\ket{\psi^i}\bra{\psi^i}=\sum_i\omega_i\ket{\psi^i}\bra{\psi^i}=\hat\rho\tag4\\
+(\because \omega_i\ is\ probability)
+\end{align*}
+\]</span> <strong>Prove 2.</strong></p>
+<p><span class="math display">\[
+tr(\hat\rho)=\sum_n\bra
+n\sum_i\omega_i\ket{\psi^i}\bra{\psi^i}n\rangle=\sum_i\omega_i\sum_n|\langle\psi^i|n\rangle|^2=\sum_i\omega_i=1\tag5
+\]</span></p>
+
+<p><strong>Prove 3.</strong></p>
+
+<p><span class="math display">\[
+\begin{align*}
+&amp;\bra\phi\hat\rho\ket\phi=\bra\phi\sum_i\omega_i\ket{\psi^i}\bra{\psi^i}\phi\rangle=\sum_i\omega_i|\bra\phi\psi^i\rangle|^2\geq0\\
+&amp;\therefore\hat\rho\ is\ positive\ definite.
+\end{align*}\tag6
+\]</span></p>
+<h2 id="pure-state-mixed-state">3. Pure state, Mixed state</h2>
+<hr />
+<p>When the state’s density operator is <span class="math inline">\(\hat\rho\)</span>, pure state or mixed state could
+be defined like this.</p>
+
+<p><strong>Definition.</strong> Pure State, mixed state</p>
+
+<p>If <span class="math inline">\(\exists \ket\psi\)</span> such that,
+<span class="math inline">\(\hat\rho=\ket\psi\bra\psi\)</span>, the
+state is called pure state. If there is no <span class="math inline">\(\ket\psi\)</span>, it is called mixed state.</p>
+<p>We can easily find a property of pure state that <span class="math inline">\(\hat\rho^2=\hat\rho\)</span> if and only if <span class="math inline">\(\hat\rho\)</span> is pure.</p>
+
+<p><strong>Prove.</strong></p>
+
+<p>If state is pure, there is <span class="math inline">\(\ket\psi\)</span> such that <span class="math inline">\(\hat\rho=\ket\psi\bra\psi\)</span> so, <span class="math inline">\(\hat\rho^2=\hat\rho\)</span> is trivial.</p>
+<p>If <span class="math inline">\(\hat\rho^2=\hat\rho\)</span>, because
+<span class="math inline">\(\hat\rho\)</span> is hermitian, we can
+decompose it as, <span class="math display">\[
+\hat\rho=\sum_i\rho_i\ket i\bra i.
+\tag7\]</span> So, by simple calculate, we can get <span class="math inline">\(\rho_i(\rho_i-1)=0\)</span>. Then by <span class="math inline">\(tr(\hat\rho)=1\)</span>, we can find that there is
+only one n such that <span class="math inline">\(\rho_n=1\)</span>.
+Therefore <span class="math inline">\(\hat\rho=\ket n\bra n\)</span>,
+<span class="math inline">\(\hat\rho\)</span> is pure.</p>
+<p>By this property, we can check if our state is pure or mixed.</p>
+
+<a href="#" onclick="location.href='./index'">To main page</a>
 </body>
 </html>
